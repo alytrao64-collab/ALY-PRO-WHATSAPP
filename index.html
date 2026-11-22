@@ -80,12 +80,49 @@ footer { text-align: center; padding: 20px; color: #687386; }
 
 <footer>ALY PRO © 2026</footer>
 
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-document.getElementById("supportForm").addEventListener("submit", function(e) {
+const SUPABASE_URL = "https://cgrfqyigzllinumpcrjf.supabase.co";
+const SUPABASE_KEY = "sb_publishable_0UjdlSAe66GUZ941h9y2bg_Rf25NVlP";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+document.getElementById("supportForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-  alert("Votre formulaire fonctionne ! La connexion à Supabase sera ajoutée prochainement.");
+
+  const button = this.querySelector('button[type="submit"]');
+  button.disabled = true;
+  button.textContent = "Envoi en cours...";
+
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const description = document.getElementById("description").value.trim();
+
+  try {
+    const { error } = await supabaseClient
+      .from("support_requests")
+      .insert([{ name, phone, description }]);
+
+    if (error) throw error;
+
+    alert("Votre demande a été envoyée avec succès !");
+    this.reset();
+
+  } catch (error) {
+    console.error(error);
+    alert("Erreur : " + error.message);
+  } finally {
+    button.disabled = false;
+    button.textContent = "Envoyer la demande";
+  }
 });
 </script>
+
 
 </body>
 </html>
