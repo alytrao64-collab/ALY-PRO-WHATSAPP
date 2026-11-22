@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALY PRO - Assistance</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f4f8;
+  color: #172033;
+}
+header {
+  background: #101c35;
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+header h1 { color: #43d9a3; }
+.container { max-width: 500px; margin: 25px auto; padding: 20px; }
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 5px 20px #00000010;
+}
+label { display: block; font-weight: bold; margin: 15px 0 8px; }
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d6dce5;
+  border-radius: 10px;
+  font-size: 16px;
+}
+textarea { min-height: 120px; }
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px;
+  background: #12a879;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+}
+footer { text-align: center; padding: 20px; color: #687386; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ALY PRO</h1>
+  <p>Bienvenue dans notre service d'assistance</p>
+</header>
+
+<div class="container">
+  <div class="card">
+    <h2>Envoyer une demande</h2>
+    <p>Remplissez les informations ci-dessous.</p>
+
+    <form id="supportForm">
+      <label>Votre nom</label>
+      <input type="text" id="name" placeholder="Entrez votre nom" required>
+
+      <label>Numéro WhatsApp</label>
+      <input type="tel" id="phone" placeholder="Votre numéro" required>
+
+      <label>Votre demande</label>
+      <textarea id="description" minlength="5" maxlength="200"
+        placeholder="Expliquez votre problème..." required></textarea>
+
+      <button type="submit">Envoyer la demande</button>
+    </form>
+  </div>
+</div>
+
+<footer>ALY PRO © 2026</footer>
+
+<script>
+document.getElementById("supportForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  alert("Votre formulaire fonctionne ! La connexion à Supabase sera ajoutée prochainement.");
+});
+</script>
+
+</body>
+</html>
